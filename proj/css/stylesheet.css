@@ -58,3 +58,12 @@ p {
     clear: both;
     float: left;
 }
+.registerBox {
+    margin: auto;
+    /*text-align: justify;*/
+}
+.hej {
+    font-family: "Arial Black";
+    font-size: 50px;
+    color: slateblue;
+}

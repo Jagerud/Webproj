@@ -6,6 +6,7 @@ session_start();
 
 include_once 'includes/register.inc.php';
 include_once 'includes/functions.php';
+include 'includes/navbar.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,17 +15,18 @@ include_once 'includes/functions.php';
         <title>Secure Login: Registration Form</title>
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <script type="text/JavaScript" src="js/forms.js"></script>
-        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="css/stylesheet.css"/>
     </head>
     <body>
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
+        <h1>Register with us!</h1>
         <?php
         if (!empty($error_msg)) {
             echo $error_msg;
         }
         ?>
+        <div class="registerBox">
         <ul>
             <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
             <li>Emails must have a valid email format</li>
@@ -82,5 +84,6 @@ include_once 'includes/functions.php';
                                    this.form.confirmpwd);" />
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
+        </div>
     </body>
 </html>
