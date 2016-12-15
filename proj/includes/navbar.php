@@ -43,31 +43,39 @@
                 <li><a href="protected_page.php">User</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false"><?php echo htmlentities($_SESSION['email']); ?> <span class="caret"></span></a>
+                       aria-expanded="false"><?php if (login_check($mysqli) == true) {echo htmlentities($_SESSION['email']);} else{echo 'Log in';}; ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <?php
+                        if (login_check($mysqli) == true) :
+
+                        ?>
                         <li><a href="includes/logout.php">Log out</a></li>
-                        <li role="separator" class="divider"></li>
+                        <!--li role="separator" class="divider"></li-->
+                        <?php else : ?>
                         <li>
-                            <form class="navbar-form" role="search">
+                            <form class="navbar-form" action="includes/process_login.php" method="post"
+                                  name="login_form">
                                 <!-- Kunna söka efter pizzor på sidan// INTE IMPLEMENTERAD -->
-                                <form id="form1" method="post">
-                                    <div class="row">
 
-                                        <div class="col-lg-12">
-                                            <div class="input-group">
+                                <div class="row">
 
-                                                <input type="text" class="form-control" name="name"
-                                                       placeholder="Användare...">
-                                                <input type="text" class="form-control" name="pass"
-                                                       placeholder="Lösenord...">
-                                                <span class="input-group-btn">
-				        <button class="btn btn-default" type="submit" name="submit">></button>
-				      </span>
-                                            </div><!-- /input-group -->
-                                        </div><!-- /.col-lg-6 -->
-                                    </div><!-- /.row -->
-                                </form>
+                                    <div class="col-lg-12">
+                                        <div class="input-group">
+
+                                            <input type="text" class="form-control" name="email"
+                                                   placeholder="Email...">
+                                            <input type="password" class="form-control" name="password"
+                                                   id="password"
+                                                   placeholder="Password...">
+                                            <span class="input-group-btn">
+				                                <button class="btn btn-default" type="SUBMIT" value="Login" onclick="formhash(this.form, this.form.password);" name="submit">-></button>
+                                            </span>
+                                        </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-6 -->
+                                </div><!-- /.row -->
+                            </form>
                         </li>
+                        <?php endif; ?>
                     </ul>
                 </li>
             </ul>

@@ -125,9 +125,9 @@ function checkbrute($user_id, $mysqli)
 function login_check($mysqli)
 {
     //echo "1";
-    echo 'user id '.$_SESSION['user_id'];
+    /*echo 'user id '.$_SESSION['user_id'];
     echo 'user name '.$_SESSION['username'];
-    echo 'login string'.$_SESSION['login_string'];
+    echo 'login string'.$_SESSION['login_string']; */
 
     if (isset($_SESSION['user_id'] /*$_SESSION['username']*/, $_SESSION['login_string'])) {
         //echo "login check isset ";

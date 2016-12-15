@@ -28,7 +28,7 @@ $_SESSION["favcolor"] = "green";
 <body>
 <div class="container">
     <div class="myheader"><h1>Sann Pizza</h1></div>
-    <form action="includes/process_login.php" method="post" name="login_form">
+    <!--form action="includes/process_login.php" method="post" name="login_form">
         <div class="emailField"> Email: <input type="text" name="email"/></div>
         <div class="passwordField">Password: <input type="password"
                                                     name="password"
@@ -37,7 +37,7 @@ $_SESSION["favcolor"] = "green";
                value="Login"
                onclick="formhash(this.form, this.form.password);"/></div>
 
-    </form>
+    </form-->
     <!-- Inspiration ifrån tidigare arbete på lab 3 -->
     <div class="row">
 

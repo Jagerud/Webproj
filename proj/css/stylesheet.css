@@ -60,6 +60,7 @@ p {
 }
 .registerBox {
     margin: auto;
+    text-align: center;
     /*text-align: justify;*/
 }
 .hej {
