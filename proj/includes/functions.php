@@ -1,42 +1,8 @@
 <?php
 
-//include 'db.php';
 session_save_path('../../../Documents/session');
 session_start();
 include("db.php");
-
-function sec_session_start()
-{
-    session_save_path('sessions');
-    $session_name = sec_session_id;
-    //$secure = SECURE; //oklart, gammalt
-    session_name($session_name);
-    $secure = true;
-    $httponly = true; //js kommer inte åt id
-
-    if (ini_set('session.use_only_cookies', 1) === FALSE) { // === identiska //kastar detta error om tar bort citat
-        //echo "testet";
-        header("Location: ../proj/error.php?err=Det gick inte att uprätta en säker anslutning");
-        //header("Location: ../proj/error.php");
-        exit();
-    }
-    $cookieParams = session_get_cookie_params(); //hämta info i cookies
-    session_set_cookie_params($cookieParams["lifetime"],
-        $cookieParams["path"],
-        $cookieParams["domain"],
-        $secure,
-        $httponly);
-    //echo $session_name;
-    //echo $cookieParams["path"];
-
-    //session_name($session_name); // ändrar session name till ovan
-    //echo "före start";
-    session_start();                //startar sessionen nu säkert //var kommenterad innan
-    //echo "efter start";
-    session_regenerate_id(true);    //tar bort den gamla
-
-}
-
 
 function login($email, $password, $mysqli)
 {    //lösenorden är olika, något fel med krypteringen? lösenorden ändras inte,
@@ -60,20 +26,13 @@ function login($email, $password, $mysqli)
         $stmt->bind_result($user_id, $username, $db_password);
         $stmt->fetch();
 
-        //echo "2";
-        //cho " user id " . $user_id;
-        //echo "password before: " . $password;
-
-        //$password = hash('sha512', $password); //kryptering //redan krypterat?
-
-        //echo "password after: " . $password;
         if ($stmt->num_rows == 1) { // om användaren finns
-            //echo " 3";
-            /*if(checkbrute($user_id, $mysqli) == true) {   //Bortkommenterat under testning
+            if(checkbrute($user_id, $mysqli) == true) {   //Bortkommenterat under testning
                 echo "brute";
+                header('Location: ../error.php?err=Account locked for 1 hour, too many tries');
                 //användare låst skicka mail INTE IMPLEMENTERAT!
                 return false;
-            } else{ */
+            }
             //echo "db pass : " . $db_password . " <br>  å inskcikat:                                      " . $password;
             if ($db_password == $password) {
                 //echo " 4 ";
@@ -86,7 +45,7 @@ function login($email, $password, $mysqli)
 
                 return true;
             } else { //fel lösen
-                //echo " 5, fel lösen";
+                echo " 5, fel lösen";
                 $now = time(); //tiden för försöket
                 $mysqli->query("INSERT INTO login_attempts(user_id, time) VALUES ('$user_id', '$now')");
                 return false;

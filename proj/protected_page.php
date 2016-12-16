@@ -30,7 +30,20 @@ echo "Favorite color is " . $_SESSION["favcolor"];
                 This is an example protected page.  To access this page, users
                 must be logged in.
             </p>
+            <div class="well">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Panel heading</div>
+                    <div class="panel-body">
+                        <p>...</p>
+                    </div>
 
+                    <!-- Table -->
+                    <table class="table">
+                        ...
+                    </table>
+                </div>
+            </div>
         <?php else : ?>
             <p>
                 <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.

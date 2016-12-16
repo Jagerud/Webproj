@@ -136,8 +136,11 @@ if (isset($_POST['email'], $_POST['p'])) {  //funkar
             </p>
         </div
         <p>Return to <a href="../index.php">login page</a></p>
-    <?php else : ?>
+    <?php else :
+        //header('Location: ../index.php');
+    ?>
         <p>
+
             <span class="error">You are not authorized to access this page.</span> Please <a
                 href="../index.php">login</a>.
         </p>
