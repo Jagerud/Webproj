@@ -28,7 +28,7 @@ function login($email, $password, $mysqli)
 
         if ($stmt->num_rows == 1) { // om användaren finns
             if(checkbrute($user_id, $mysqli) == true) {   //Bortkommenterat under testning
-                echo "brute";
+
                 header('Location: ../error.php?err=Account locked for 1 hour, too many tries');
                 //användare låst skicka mail INTE IMPLEMENTERAT!
                 return false;
@@ -45,7 +45,7 @@ function login($email, $password, $mysqli)
 
                 return true;
             } else { //fel lösen
-                echo " 5, fel lösen";
+
                 $now = time(); //tiden för försöket
                 $mysqli->query("INSERT INTO login_attempts(user_id, time) VALUES ('$user_id', '$now')");
                 return false;
@@ -83,17 +83,11 @@ function checkbrute($user_id, $mysqli)
 
 function login_check($mysqli)
 {
-    //echo "1";
-    /*echo 'user id '.$_SESSION['user_id'];
-    echo 'user name '.$_SESSION['username'];
-    echo 'login string'.$_SESSION['login_string']; */
 
     if (isset($_SESSION['user_id'] /*$_SESSION['username']*/, $_SESSION['login_string'])) {
-        //echo "login check isset ";
 
         $user_id = $_SESSION['user_id'];
         $login_string = $_SESSION['login_string'];
-        $username = $_SESSION['username'];
 
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
 

@@ -6,10 +6,7 @@
     <meta name="description" content="Sann Pizza, Ett smart pizza-system!">
     <meta name="keywords" content="Pizza, smart, , Filip Jägerud, jaegerud, jagerud, jaeger">
     <meta name="author" content="Filip Jägerud">
-    <!--title>Sann Pizza</title-->
-    <!--link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/stylesheet.css">
-    <link rel="stylesheet" href="../css/lightbox.css"-->
+    <title>Sann Pizza</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
 

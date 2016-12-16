@@ -4,7 +4,6 @@ session_start();
 //sec_session_start();
 //include 'db.php';
 include 'functions.php';
-echo "Favorite color is " . $_SESSION["favcolor"];
 ?>
 <!--DOCTYPE html>
 <html>
