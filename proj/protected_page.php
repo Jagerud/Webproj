@@ -36,7 +36,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
                 $oldPizza = $row['pizza'];
                 if ($oldPizza == $pizza) {
                     $exist = 1;
-                    $feedback = "<span style='color:red'>Name already exists</span>";
+                    $feedback = "<span style='color:red'>Pizza already exists</span>";
                     echo $feedback;
                     break;
                 }
@@ -62,11 +62,8 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
         if (login_check($mysqli) == true) :
 
             ?>
-            <p>Welcome <?php echo htmlentities($_SESSION['email']); ?>!</p>
-            <p>
-                This is an example protected page.  To access this page, users
-                must be logged in.
-            </p>
+            <h2>Welcome <?php echo htmlentities($_SESSION['email']); ?>!</h2>
+
             <div class="well">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->

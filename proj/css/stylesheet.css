@@ -60,6 +60,7 @@ p {
 }
 .registerBox {
     margin: auto;
+    list-style-type: none;
     text-align: center;
     /*text-align: justify;*/
 }
@@ -70,4 +71,12 @@ p {
     font-family: "Arial Black";
     font-size: 50px;
     color: slateblue;
+}
+ul
+{
+    list-style-type: none;
+}
+li
+{
+    list-style-type: none;
 }

@@ -1,18 +1,8 @@
 <?php
 session_save_path("../../../Documents/session");
 session_start();
-//sec_session_start();
-//include 'db.php';
 include 'functions.php';
 ?>
-<!--DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Secure Login: Protected Page</title>
-    <link rel="stylesheet" href="css/stylesheet.css.css" />
-</head>
-<body-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,16 +20,11 @@ include 'functions.php';
 <body>
 <?php
 
-//sec_session_start(); //kallar på min säkra metod, session fungerar inte
-
 if (isset($_POST['email'], $_POST['p'])) {  //funkar
-    //echo " krypterat " . $_POST['p'] . "<br>";
     $email = $_POST['email'];
     $password = $_POST['p']; // krypterade lösenordet
-    //$_COOKIE['pnew'] = $password; //Funkar inte med cookies?
-    //$_COOKIE['mail'] = $email;
     if (login($email, $password, $mysqli) == true) : // inloggad
-        $_SESSION['email']=$email;
+        $_SESSION['email'] = $email;
         header('Location: ../protected_page.php');
         ?>
 
@@ -90,8 +75,8 @@ if (isset($_POST['email'], $_POST['p'])) {  //funkar
                                                         <input type="text" class="form-control" name="pass"
                                                                placeholder="Lösenord...">
                                                         <span class="input-group-btn">
-				        <button class="btn btn-default" type="submit" name="submit">></button>
-				      </span>
+				                                        <button class="btn btn-default" type="submit" name="submit">></button>
+				                                        </span>
                                                     </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 -->
                                             </div><!-- /.row -->
@@ -111,16 +96,17 @@ if (isset($_POST['email'], $_POST['p'])) {  //funkar
 
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <a href="../img/pizza.jpg" data-lightbox="Sann Pizza" data-title="Pizza!"><img class="thumbnail"
-                                                                                            src="../img/pizza2.jpg"
-                                                                                            alt="Pizza"></a></div>
+                                                                                               src="../img/pizza2.jpg"
+                                                                                               alt="Pizza"></a></div>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <a href="../img/kebab.jpg" data-lightbox="Sann Pizza" data-title="Grillat!"><img class="thumbnail"
-                                                                                              src="../img/kebab2.jpg"
-                                                                                              alt="Kebab"></a></div>
+                                                                                                 src="../img/kebab2.jpg"
+                                                                                                 alt="Kebab"></a></div>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                 <a href="../img/flagga.jpg" data-lightbox="Sann Pizza" data-title="Italienskt!"><img class="thumbnail"
-                                                                                                  src="../img/flagga2.jpg"
-                                                                                                  alt="Italy"></a></div>
+                                                                                                     src="../img/flagga2.jpg"
+                                                                                                     alt="Italy"></a>
+            </div>
         </div>
 
         <div class="pizzas">
@@ -136,23 +122,17 @@ if (isset($_POST['email'], $_POST['p'])) {  //funkar
         </div
         <p>Return to <a href="../index.php">login page</a></p>
     <?php else :
-        //header('Location: ../index.php');
-    ?>
+        header('Location: ../index.php');
+        ?>
         <p>
 
             <span class="error">You are not authorized to access this page.</span> Please <a
-                href="../index.php">login</a>.
+                    href="../index.php">login</a>.
         </p>
     <?php endif; ?>
 
 
-    <?php //header('Location: ../protected_page.php');
-    /*} else {                                           // misslyckades
-
-        //header('Location: ../index.php?error=1');
-        header("Location: ../error.php?error=Något gick fel vid kontroll av uppgifter "); //$mysqli
-        echo "snopp";
-    }*/
+    <?php
 } else {
 
     echo 'Invalid Request, must be logged in to see this page!.</span> Please <a href="../index.php">login</a>.'; //POST skickade fel

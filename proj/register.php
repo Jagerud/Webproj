@@ -30,7 +30,6 @@ include 'includes/navbar.php';
                 <!-- Default panel contents -->
                 <div class="panel-heading"></div>
                 <div class="panel-body">
-                    <p>..hehhehe.</p>
                     <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
                     <li>Emails must have a valid email format</li>
                     <li>Passwords must be at least 6 characters long</li>
@@ -81,7 +80,7 @@ include 'includes/navbar.php';
             </div>
         </div>
 
-        <p>Return to the <a href="index.php">login page</a>.</p>
+
 
     </body>
 </html>
