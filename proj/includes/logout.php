@@ -1,7 +1,8 @@
 <?php
 	include_once 'functions.php';
 	//sec_session_start();
-    session_save_path("../../../Documents/session");
+//session_save_path("../../../Documents/session"); //ida
+session_save_path("../session");
     session_start();
 	$_SESSION = array(); //nollställ array
 

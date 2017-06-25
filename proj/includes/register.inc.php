@@ -1,5 +1,6 @@
 <?php
-session_save_path("../../../Documents/session");
+//session_save_path("../../../Documents/session"); //ida
+session_save_path("../session");
 session_start();
 include_once 'db.php';
 //include_once 'psl-config.php'; //overkill?

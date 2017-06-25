@@ -1,7 +1,8 @@
 <?php
 
 //include 'db.php';
-session_save_path('../../../Documents/session');
+//session_save_path("../../../Documents/session"); //ida
+session_save_path("../session");
 session_start();
 include("db.php");
 
