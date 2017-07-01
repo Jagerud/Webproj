@@ -1,5 +1,4 @@
 <?php
-
 //include 'db.php';
 //session_save_path("../../../Documents/session"); //ida
 session_save_path("../session");
@@ -27,6 +26,7 @@ function sec_session_start()
         $cookieParams["domain"],
         $secure,
         $httponly);
+
     //echo $session_name;
     //echo $cookieParams["path"];
 
@@ -37,7 +37,6 @@ function sec_session_start()
     session_regenerate_id(true);    //tar bort den gamla
 
 }
-
 
 function login($email, $password, $mysqli)
 {    //lösenorden är olika, något fel med krypteringen? lösenorden ändras inte,
@@ -89,7 +88,7 @@ function login($email, $password, $mysqli)
             } else { //fel lösen
                 //echo " 5, fel lösen";
                 $now = time(); //tiden för försöket
-                $mysqli->query("INSERT INTO login_attempts(user_id, time) VALUES ('$user_id', '$now')");
+                $mysqli->query("INSERT INTO login_attempts(user_id, time) VALUES ('$user_id', '$now')");//TODO ändra databasnamn
                 return false;
             }
             //}
@@ -126,9 +125,10 @@ function checkbrute($user_id, $mysqli)
 function login_check($mysqli)
 {
     //echo "1";
-    echo 'user id '.$_SESSION['user_id'];
-    echo 'user name '.$_SESSION['username'];
-    echo 'login string'.$_SESSION['login_string'];
+    //Lägg i if sats
+    //echo 'user id '.$_SESSION['user_id'];
+    //echo 'user name '.$_SESSION['username'];
+    //echo 'login string'.$_SESSION['login_string'];
 
     if (isset($_SESSION['user_id'] /*$_SESSION['username']*/, $_SESSION['login_string'])) {
         //echo "login check isset ";

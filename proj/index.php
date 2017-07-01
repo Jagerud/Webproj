@@ -30,13 +30,16 @@ $_SESSION["favcolor"] = "green";
 <div class="container">
     <div class="myheader"><h1>Sann Pizza</h1></div>
     <form action="includes/process_login.php" method="post" name="login_form">
-        <div class="emailField"> Email: <input type="text" name="email"/></div>
-        <div class="passwordField">Password: <input type="password"
-                                                    name="password"
-                                                    id="password"/></div>
+        <div class="emailField"> Email: <label>
+                <input type="text" name="email"/>
+            </label></div>
+        <div class="passwordField">Password: <label for="password"></label><input type="password"
+                                                                                  name="password"
+                                                                                  id="password"/></div>
         <div class="passwordButton"><input type="button"
-               value="Login"
-               onclick="formhash(this.form, this.form.password);"/></div>
+                                           name="loginButton"
+                                           value="Login"
+                                           onclick="formhash(this.form, this.form.password);"/></div>
 
     </form>
     <!-- Inspiration ifrån tidigare arbete på lab 3 -->
@@ -76,7 +79,7 @@ $_SESSION["favcolor"] = "green";
     <?php
     echo "<p>If you don't have a login, please <a href='register.php'>register</a></p>";
     ?>
-    </div>
-    <?php include("includes/scripts.php"); ?>
+</div>
+<?php include("includes/scripts.php"); ?>
 </body>
 </html>

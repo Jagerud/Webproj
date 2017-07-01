@@ -14,7 +14,7 @@ function formhash(form, password) {
 
     //Tar bort gamla okrypterade lösenordet
     password.value = "";
-
+    //alert(email = form.elements["name"].value);
     form.submit();
 }
 

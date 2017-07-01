@@ -6,7 +6,7 @@
  * Time: 18:13
  */
 
-echo'
+echo '
 
 <head>
         <meta charset="UTF-8">

@@ -31,6 +31,7 @@ p {
 .myheader {
     text-align: center;
 }
+
 /*
 .trademark {
     font-size: 18px;
@@ -44,24 +45,29 @@ p {
     /*width: 50%;*/
     float: right;
 }
+
 .passwordField {
     text-align: right;
     padding-top: 5px;
     clear: both;
 }
+
 .passwordButton {
     text-align: right;
     clear: both;
 }
+
 .userName {
     text-align: center;
     clear: both;
     float: left;
 }
+
 .registerBox {
     margin: auto;
     /*text-align: justify;*/
 }
+
 .hej {
     font-family: "Arial Black";
     font-size: 50px;
