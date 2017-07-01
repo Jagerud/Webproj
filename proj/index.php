@@ -2,13 +2,6 @@
 //session_save_path("../../Documents/session"); //ida
 session_save_path("session");
 session_start();
-// inget ficxat mest för test
-//sec_session_start();
-//include("includes/db.php");
-//include_once 'includes/db.php';
-//include_once 'includes/functions.php';
-//include ("includes/register.inc.php");
-//include ("includes/process_login.php");
 include("includes/functions.php");
 include 'includes/navbar.php';
 if (login_check($mysqli) == true) {
@@ -36,7 +29,7 @@ $_SESSION["favcolor"] = "green";
         <div class="passwordField">Password: <label for="password"></label><input type="password"
                                                                                   name="password"
                                                                                   id="password"/></div>
-        <div class="passwordButton"><input type="button"
+        <div class="passwordButton"><input type="submit"
                                            name="loginButton"
                                            value="Login"
                                            onclick="formhash(this.form, this.form.password);"/></div>

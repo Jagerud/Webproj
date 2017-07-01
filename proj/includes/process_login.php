@@ -1,5 +1,6 @@
 <?php
 //session_save_path("../../../Documents/session"); //ida
+echo $_POST['email'];
 session_save_path("../session");
 session_start();
 //sec_session_start();
