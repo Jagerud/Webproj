@@ -1,5 +1,6 @@
 <?php
-session_save_path("../../../Documents/session");
+session_save_path('../session');
+//session_save_path("../../../Documents/session");
 session_start();
 include 'functions.php';
 ?>
@@ -20,7 +21,31 @@ include 'functions.php';
 <body>
 <?php
 
+/*
+    $texten ='';
+    if(isset($_POST['submiten'])){
+        echo "yo";
+        $texten  = $_POST['texten'];
+        if ($texten ==null || !$texten )
+            echo 'username is null';
+        echo strlen($texten );
+        echo $texten;
+    }
+
+
+echo "innan";
+$texten = $_POST['texten'];
+echo $texten;
+echo $_POST['email'];
+echo $_POST['p'];
+if(isset($_POST['testForm'])){
+    echo "<br>formen yo<br>";
+}
+*/
+echo $_POST['testEmail'];
+echo $_POST['p'];
 if (isset($_POST['email'], $_POST['p'])) {  //funkar
+    echo "efter";
     $email = $_POST['email'];
     $password = $_POST['p']; // krypterade lösenordet
     if (login($email, $password, $mysqli) == true) : // inloggad

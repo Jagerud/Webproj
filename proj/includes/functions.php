@@ -1,7 +1,11 @@
 <?php
+session_save_path('../session');
+//session_save_path('../../../Documents/session');
 
-session_save_path('../../../Documents/session');
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 include("db.php");
 
 function login($email, $password, $mysqli)
@@ -33,7 +37,7 @@ function login($email, $password, $mysqli)
                 //användare låst skicka mail INTE IMPLEMENTERAT!
                 return false;
             }
-            //echo "db pass : " . $db_password . " <br>  å inskcikat:                                      " . $password;
+            echo "db pass : " . $db_password . " <br>  å inskcikat:                                      " . $password;
             if ($db_password == $password) {
                 //echo " 4 ";
                 $user_browser = $_SERVER['HTTP_USER_AGENT']; //http://stackoverflow.com/questions/13252603/how-works-http-user-agent

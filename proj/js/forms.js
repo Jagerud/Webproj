@@ -19,10 +19,10 @@ function formhash(form, password) {
 
 function regformhash(form, uid, email, password, conf) {
     // Kontroll så att inget fält var tomt
-    if (uid.value == '' ||
-        email.value == '' ||
-        password.value == '' ||
-        conf.value == '') {
+    if (uid.value === '' ||
+        email.value === '' ||
+        password.value === '' ||
+        conf.value === '') {
 
         alert('You must provide all the requested details. Please try again');
         return false;
