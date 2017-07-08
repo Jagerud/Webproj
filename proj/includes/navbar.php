@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/lightbox.css">
     <link rel="stylesheet" href="css/stylesheet.css">
     <!link rel="shortcut icon" href="img/sun.png" > <!-- NOT IMPLEMENTED -->
+    <script type="text/JavaScript" src="js/pizzas.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">

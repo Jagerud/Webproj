@@ -25,7 +25,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
         $pizza = htmlspecialchars($pizza);
         //någonting har blivit fel med sql inject skyddet på denna select, (tror det behövs?)
         //Hinner inte fixa detta nu men är en enkel fix om man har lite mer tid. Skulle vara en where med "mid".
-        $databaseNames = "SELECT * FROM filni797.favorite;"; //hämtar från databasen i fallande ordning utefter mid
+        $databaseNames = "SELECT * FROM test.favorite;"; //hämtar från databasen i fallande ordning utefter mid
 
             //deletad sql injectskydd och bättre select som hämtade bara användarens pizzor
 
@@ -45,7 +45,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
 
             if ($exist == 0) {    //skickar favoritpizza till databasen, funkar!
 
-                $query = "INSERT INTO `filni797`.`favorite` (id, pizza, mid) VALUES (NULL, (?),(?));"; //skapar ny rad där id sker automatiskt
+                $query = "INSERT INTO `test`.`favorite` (id, pizza, mid) VALUES (NULL, (?),(?));"; //skapar ny rad där id sker automatiskt
                 //$query = "INSERT INTO `filni797`.`favorite` (`id`, `pizza`, `mid`) VALUES (NULL, 'pizzatest', '7');
                 if ($stmt = $mysqli->prepare($query)) {
                     $stmt->bind_param("ss", $pizza, $userId); // Sparar som string och går då inte sql-injecta
@@ -87,7 +87,14 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
 
                     <!-- Table -->
                     <table class="table">
-                        ...
+                        <div class="btn-group-vertical" role="group">
+                            <button type="button" id="pizza1" class="list-group-item" onclick="getPizza();" > first pizza</button>
+                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+                            <button type="button" class="list-group-item">Morbi leo risus</button>
+                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
+                            <button type="button" class="list-group-item">Vestibulum at eros</button>
+                        </div>
+
                     </table>
                 </div>
             </div>
