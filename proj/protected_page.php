@@ -8,12 +8,12 @@ include 'includes/navbar.php';
 //INTE FIXAT BARA TEST
  
 //sec_session_start();
-
+$userId = $_SESSION['user_id'];        //hämtar id
+$userId = trim($userId);        //tar bort mellanrum
 // Databashantering ifrån lab 5
 if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
     $pizza = $_POST['pizza'];
-    $userId = $_SESSION['user_id'];        //hämtar name
-    $userId = trim($userId);        //tar bort mellanrum
+
     $pizza = trim($pizza);
     if ($pizza == "") {
         $feedback = "<span style='color:red'>Pizza is required</span>";
@@ -25,7 +25,8 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
         $pizza = htmlspecialchars($pizza);
         //någonting har blivit fel med sql inject skyddet på denna select, (tror det behövs?)
         //Hinner inte fixa detta nu men är en enkel fix om man har lite mer tid. Skulle vara en where med "mid".
-        $databaseNames = "SELECT * FROM test.favorite;"; //hämtar från databasen i fallande ordning utefter mid
+        //TODO  fix sql inject
+        $databaseNames = "SELECT * FROM test.favorite WHERE mid = ($userId);"; //hämtar från databasen i fallande ordning utefter mid
 
             //deletad sql injectskydd och bättre select som hämtade bara användarens pizzor
 
@@ -88,11 +89,22 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
                     <!-- Table -->
                     <table class="table">
                         <div class="btn-group-vertical" role="group">
-                            <button type="button" id="pizza1" class="list-group-item" onclick="getPizza();" > first pizza</button>
-                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                            <button type="button" class="list-group-item">Morbi leo risus</button>
-                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                            <button type="button" class="list-group-item">Vestibulum at eros</button>
+                            <button type="button" id="pizza1" class="list-group-item btn-lg btn-block" onclick="getPizza();" > first pizza</button>
+
+                            <?php
+//TODO  fix sql inject
+                            $query = "SELECT * FROM test.favorite WHERE mid = ($userId) ORDER BY id DESC"; //hÃ¤mtar frÃ¥n databasen i fallande ordning utefter Id
+                            $result = $mysqli->query($query);
+                            while ($row = $result->fetch_array()){ //letar igenom hela databasen
+                                $id = $row['id']; //databasnamnen
+                                $pizza = $row['pizza'];
+                                echo
+                                "<button type=\"button\" id=\"$id\" class=\"list-group-item btn-lg btn-block\" onclick=\"deletePizza();\">$pizza</button>";
+                            }
+                            ?>
+
+
+
                         </div>
 
                     </table>

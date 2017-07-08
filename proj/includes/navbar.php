@@ -46,8 +46,10 @@
                         if (login_check($mysqli) == true) :
 
                         ?>
+                            <li><a href="settings.php">Settings</a></li>
+                            <li role="separator" class="divider"></li>
                         <li><a href="includes/logout.php">Log out</a></li>
-                        <!--li role="separator" class="divider"></li-->
+
                         <?php else : ?>
                         <li>
                             <form class="navbar-form" action="includes/process_login.php" method="post"

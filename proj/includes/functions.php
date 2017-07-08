@@ -9,8 +9,7 @@ if(!isset($_SESSION))
 include("db.php");
 
 function login($email, $password, $mysqli)
-{    //lösenorden är olika, något fel med krypteringen? lösenorden ändras inte,
-    //olika användare har ett inmatat och ett databaslösenord
+{    
     //skapar variablerna för att sedan mata in data ifrån db nedanför.
     $user_id = null;
     $username = null;
@@ -152,4 +151,7 @@ function esc_url($url)
     } else {
         return $url;
     }
+}
+function deletePizza(){
+
 }
