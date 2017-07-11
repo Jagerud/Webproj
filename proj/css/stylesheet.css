@@ -83,3 +83,13 @@ li
 .settingBars {
     text-align: center;
 }
+.formClass {
+    display: table;
+}/*
+.inputClass {
+    display: table-cell;
+    text-align: center;
+}*/
+label {
+    display: table-cell;
+}
