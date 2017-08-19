@@ -1,3 +1,7 @@
+<?php
+//klar
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,4 +1,5 @@
 <?php
+//klar
 session_save_path('../session');
 //session_save_path("../../../Documents/session");
 session_start();
@@ -22,7 +23,7 @@ include 'functions.php';
 <?php
 echo $_POST['testEmail'];
 echo $_POST['p'];
-if (isset($_POST['email'], $_POST['p'])) {  //funkar
+if (isset($_POST['email'], $_POST['p'])) {
     echo "efter";
     $email = $_POST['email'];
     $password = $_POST['p']; // krypterade lösenordet
@@ -45,7 +46,7 @@ if (isset($_POST['email'], $_POST['p'])) {  //funkar
     <?php
 } else {
 
-    echo 'Invalid Request, must be logged in to see this page!.</span> Please <a href="../index.php">login</a>.'; //POST skickade fel
+    echo 'Invalid Request, you must be logged in to see this page!.</span> Please <a href="../index.php">login</a>.'; //POST skickade fel
 }
 include 'scripts.php';
 ?>

@@ -1,4 +1,6 @@
 <?php
+//inte klar
+//TODO titta igenom
 session_save_path('../session');
 //session_save_path('../../../Documents/session');
 

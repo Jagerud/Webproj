@@ -1,4 +1,5 @@
 <?php
+//TODO titta igenom
 session_save_path('../session');
 //session_save_path("../../../Documents/session");
 session_start();
@@ -53,7 +54,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         $stmt->store_result();
  
                 if ($stmt->num_rows == 1) {
-                        // A user with this username already exists
+                        // användare finns
                         $error_msg .= '<p class="error">A user with this username already exists</p>';
                         $stmt->close();
                 }
@@ -66,7 +67,8 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 
  
     if (empty($error_msg)) {
-        // Tror inte jag använder detta men tar inte bort nu precis innan inlämning
+        // Tror inte jag använder detta men tar inte bort nu precis innan
+        //TODO kolla kommentaren ovan, används detta?
         $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
 
         // lägger in användaren

@@ -2,7 +2,7 @@
 //mig något om kryptering i skolan och simpel kontroll av inmatning kändes onödigt att ändra
 // då jag förstod hur det fungerade direkt och detta fungerade även på min hemsida.
 
-
+//TODO eventuellt ändra till jquery
 function formhash(form, password) {
     var p = document.createElement("input");
 

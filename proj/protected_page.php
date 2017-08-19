@@ -1,20 +1,18 @@
 <?php
+//TODO sql inject och struktur
 session_save_path('session');
 //session_save_path("../../Documents/session");
 session_start();
 include_once 'includes/functions.php';
-
 include 'includes/navbar.php';
-//INTE FIXAT BARA TEST
- 
-//sec_session_start();
+
 $userId = $_SESSION['user_id'];        //hämtar id
 $userId = trim($userId);        //tar bort mellanrum
 // Databashantering ifrån lab 5
 if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
     $pizza = $_POST['pizza'];
-
     $pizza = trim($pizza);
+
     if ($pizza == "") {
         $feedback = "<span style='color:red'>Pizza is required</span>";
         echo $feedback;
@@ -26,9 +24,8 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
         //någonting har blivit fel med sql inject skyddet på denna select, (tror det behövs?)
         //Hinner inte fixa detta nu men är en enkel fix om man har lite mer tid. Skulle vara en where med "mid".
         //TODO  fix sql inject
-        $databaseNames = "SELECT * FROM test.favorite WHERE mid = ($userId);"; //hämtar från databasen i fallande ordning utefter mid
+        $databaseNames = "SELECT * FROM test.favorite WHERE mid = ($userId);"; //hämtar från databasen med rätt id
 
-            //deletad sql injectskydd och bättre select som hämtade bara användarens pizzor
 
 
             $databaseResult = $mysqli->query($databaseNames);
@@ -47,7 +44,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
             if ($exist == 0) {    //skickar favoritpizza till databasen, funkar!
 
                 $query = "INSERT INTO `test`.`favorite` (id, pizza, mid) VALUES (NULL, (?),(?));"; //skapar ny rad där id sker automatiskt
-                //$query = "INSERT INTO `filni797`.`favorite` (`id`, `pizza`, `mid`) VALUES (NULL, 'pizzatest', '7');
+
                 if ($stmt = $mysqli->prepare($query)) {
                     $stmt->bind_param("ss", $pizza, $userId); // Sparar som string och går då inte sql-injecta
                     $stmt->execute();
@@ -61,6 +58,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
 
 ?>
         <?php
+        //om  inloggad
         if (login_check($mysqli) == true) :
 
             ?>
@@ -111,6 +109,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
                 </div>
             </div>
             </div>
+            //om utloggad
         <?php else : ?>
             <p>
                 <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
