@@ -2,7 +2,10 @@
 //TODO ev ändra till mindre regler
 session_save_path('session');
 //session_save_path("../../Documents/session");
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 include_once 'includes/register.inc.php';
 include_once 'includes/functions.php';

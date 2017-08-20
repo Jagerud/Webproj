@@ -2,7 +2,10 @@
 //TODO sql inject och struktur
 session_save_path('session');
 //session_save_path("../../Documents/session");
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 include_once 'includes/functions.php';
 include 'includes/navbar.php';
 

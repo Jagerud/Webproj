@@ -2,7 +2,10 @@
 //klar
 session_save_path('../session');
 //session_save_path("../../../Documents/session");
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 include 'functions.php';
 ?>
 <!DOCTYPE html>
@@ -20,10 +23,7 @@ include 'functions.php';
 </head>
 <body>
 <?php
-echo $_POST['testEmail'];
-echo $_POST['p'];
 if (isset($_POST['email'], $_POST['p'])) {
-    echo "efter";
     $email = $_POST['email'];
     $password = $_POST['p']; // krypterade lösenordet
     if (login($email, $password, $mysqli) == true) : // inloggad
@@ -32,10 +32,13 @@ if (isset($_POST['email'], $_POST['p'])) {
         ?>
 
     <?php else :
-        header('Location: ../index.php');
+
+        //header('Location: ../index.php?error=1');
+        //ful sida just nu, förbättringspotential
         ?>
         <p>
-            <span class="error">You are not authorized to access this page.</span> Please <a
+
+            <span class="error">Wrong password or you are not authorized to access this page.</span> Please <a
                     href="../index.php">login</a>.
         </p>
     <?php endif; ?>

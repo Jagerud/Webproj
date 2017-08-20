@@ -4,7 +4,10 @@ include_once 'functions.php';
 
 session_save_path('../session');
 //    session_save_path("../../../Documents/session");
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 $_SESSION = array(); //nollställ sessionsarray
 $params = session_get_cookie_params(); //ladda parmetrar
 
