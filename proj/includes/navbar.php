@@ -39,7 +39,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <?php if (login_check($mysqli) == true) {echo "<li><a href='favourite.php'>User</a>";} else{echo 'Log in';}; ?>
+                <?php if (login_check($mysqli) == true) {echo "<li><a href='favourite.php'>User</a>";}; ?>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
