@@ -6,13 +6,13 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Registration Success</title>
-        <link rel="stylesheet" href="styles/main.css" />
-    </head>
-    <body>
-        <h1>Success!</h1>
-        <p>Go to the  <a href="index.php">login page</a> and log in</p>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Success</title>
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<h1>Success!</h1>
+<p>Go to the  <a href="index.php">login page</a> and log in</p>
+</body>
 </html>

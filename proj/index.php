@@ -1,10 +1,11 @@
-<?
+<?php
 //klar
 session_save_path('session');
 //session_save_path("../../Documents/session");
 session_start();
 include("includes/functions.php");
 include 'includes/navbar.php';
+
 if (login_check($mysqli) == true) { //kollar om inloggad
     $logged = 'in';
     $loggedIn = true;
@@ -59,14 +60,16 @@ if (login_check($mysqli) == true) { //kollar om inloggad
     ?>
 
     <?php
+
     if($loggedIn){
         echo "<p>You are our most well liked user!</p>";
     }
     else {
         echo "<p>If you don't have a login, please <a href='register.php'>register</a></p>";
     }
+
     ?>
-    </div>
-    <?php include("includes/scripts.php"); ?>
+</div>
+<?php include("includes/scripts.php"); ?>
 </body>
 </html>

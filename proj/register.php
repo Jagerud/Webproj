@@ -10,27 +10,27 @@ include 'includes/navbar.php';
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Secure Login: Registration Form</title>
-        <script type="text/JavaScript" src="js/sha512.js"></script> 
-        <script type="text/JavaScript" src="js/forms.js"></script>
-        <link rel="stylesheet" href="css/stylesheet.css"/>
-    </head>
-    <body>
-        <h1>Register with us!</h1>
-        <?php
-        if (!empty($error_msg)) {
-            echo $error_msg;
-        }
-        ?>
-        <!--div class="registerBox"-->
-        <div class="well ">
-            <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading"></div>
-                <div class="panel-body ">
-                    <div class="list-group ">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Login: Registration Form</title>
+    <script type="text/JavaScript" src="js/sha512.js"></script>
+    <script type="text/JavaScript" src="js/forms.js"></script>
+    <link rel="stylesheet" href="css/stylesheet.css"/>
+</head>
+<body>
+<h1>Register with us!</h1>
+<?php
+if (!empty($error_msg)) {
+    echo $error_msg;
+}
+?>
+<!--div class="registerBox"-->
+<div class="well ">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"></div>
+        <div class="panel-body ">
+            <div class="list-group ">
 
                 <ul>
                     <li>Usernames may contain only digits, upper and lowercase letters and underscores</li>
@@ -46,21 +46,21 @@ include 'includes/navbar.php';
                     <li>Your password and confirmation must match exactly</li>
                 </ul>
 
-                        <form class="formClass col-sm-3 col-md-offset-5" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>"method="post" name="registration_form">
-                            <ul class="list-group">
-                                <li class="list-group-item"><label for="username">Username: </label><input type='text' name='username' id='username' /></li>
-                                <li class="list-group-item"><label for="email">Email: </label><input type="text" name="email" id="email"/></li>
-                                <li class="list-group-item"><label for="password">Password: </label><input type="password" name="password" id="password"/></li>
-                                <li class="list-group-item"><label for="confirmpwd">Confirm password: </label><input type="password" name="confirmpwd" id="confirmpwd"/></li>
-                                <li class="list-group-item inputClass"><input type="button" value="Register" onclick="return regformhash(this.form, this.form.username,
+                <form class="formClass col-sm-3 col-md-offset-5" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>"method="post" name="registration_form">
+                    <ul class="list-group">
+                        <li class="list-group-item"><label for="username">Username: </label><input type='text' name='username' id='username' /></li>
+                        <li class="list-group-item"><label for="email">Email: </label><input type="text" name="email" id="email"/></li>
+                        <li class="list-group-item"><label for="password">Password: </label><input type="password" name="password" id="password"/></li>
+                        <li class="list-group-item"><label for="confirmpwd">Confirm password: </label><input type="password" name="confirmpwd" id="confirmpwd"/></li>
+                        <li class="list-group-item inputClass"><input type="button" value="Register" onclick="return regformhash(this.form, this.form.username,
                                 this.form.email, this.form.password,this.form.confirmpwd);"/></li>
-                            </ul>
-                        </form>
-                </div>
+                    </ul>
+                </form>
             </div>
         </div>
+    </div>
 
 
-            <?php include("includes/scripts.php"); ?>
-    </body>
+    <?php include("includes/scripts.php"); ?>
+</body>
 </html>

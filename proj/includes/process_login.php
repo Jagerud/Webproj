@@ -17,7 +17,6 @@ include 'functions.php';
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/stylesheet.css">
     <link rel="stylesheet" href="../css/lightbox.css">
-
 </head>
 <body>
 <?php
@@ -29,19 +28,17 @@ if (isset($_POST['email'], $_POST['p'])) {
     $password = $_POST['p']; // krypterade lösenordet
     if (login($email, $password, $mysqli) == true) : // inloggad
         $_SESSION['email'] = $email;
-        header('Location: ../protected_page.php');
+        header('Location: ../favourite.php');
         ?>
 
     <?php else :
         header('Location: ../index.php');
         ?>
         <p>
-
             <span class="error">You are not authorized to access this page.</span> Please <a
                     href="../index.php">login</a>.
         </p>
     <?php endif; ?>
-
 
     <?php
 } else {

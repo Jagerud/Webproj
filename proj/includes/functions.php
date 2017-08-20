@@ -1,5 +1,6 @@
 <?php
 //inte klar
+//Mycket med inloggning är inspirerat eller lånat från http://www.wikihow.com/Create-a-Secure-Login-Script-in-PHP-and-MySQL
 //TODO titta igenom
 session_save_path('../session');
 //session_save_path('../../../Documents/session');
@@ -11,7 +12,7 @@ if(!isset($_SESSION))
 include("db.php");
 
 function login($email, $password, $mysqli)
-{    
+{
     //skapar variablerna för att sedan mata in data ifrån db nedanför.
     $user_id = null;
     $username = null;
@@ -124,7 +125,7 @@ function login_check($mysqli)
         return false;
     }
 }
-
+//lånat från http://www.wikihow.com/Create-a-Secure-Login-Script-in-PHP-and-MySQL
 function esc_url($url)
 {
 
@@ -148,7 +149,6 @@ function esc_url($url)
     $url = str_replace("'", '&#039;', $url);
 
     if ($url[0] !== '/') {
-        // We're only interested in relative links from $_SERVER['PHP_SELF']
         return '';
     } else {
         return $url;

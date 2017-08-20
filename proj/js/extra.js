@@ -3,11 +3,11 @@
  */
 //lite onödig men rolig js
 //TODO något vettigt med detta
-function getPizza() {
-    if(document.getElementById("pizza1").innerHTML === "Hello World"){
-        document.getElementById("pizza1").innerHTML = "first pizza";
+function changeColor() {
+    if(document.getElementById("pizza1").innerHTML === "Go yellow!"){
+        document.getElementById("pizza1").innerHTML = "Go boring";
     }else{
-        document.getElementById("pizza1").innerHTML = "Hello World";
+        document.getElementById("pizza1").innerHTML = "Go yellow!";
     }
     //alert("YOOOOOOOO");
     if(document.getElementsByTagName("BODY")[0].style.backgroundColor === "yellow"){
