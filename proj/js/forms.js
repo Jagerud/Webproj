@@ -13,10 +13,28 @@ function formhash(form, password) {
 
     //Tar bort gamla okrypterade lösenordet
     password.value = "";
-
     form.submit();
 }
+$(document).ready(function () {
+    $('#settingName').validate({
+        rules: {
+            settingNameInput: {
+                    minlength: 3,
+                    required: true,
+                    email: true
+                }
+        },
+        //wrapper:'li',   // lägger felet under rutan istället för jämte http://jsfiddle.net/ryleyb/aaEFQ/
+        messages: {
+            settingNameInput: {
+                email: "Email is required",
+                required: "Required",
+                minlength: "Atleast 3 chars"
+            }
+        }
+    });
 
+});
 function regformhash(form, uid, email, password, conf) {
     // Kontroll så att inget fält var tomt
     if (uid.value === '' ||

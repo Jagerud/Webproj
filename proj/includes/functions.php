@@ -1,7 +1,7 @@
 <?php
 //inte klar
 //Mycket med inloggning är inspirerat eller lånat från http://www.wikihow.com/Create-a-Secure-Login-Script-in-PHP-and-MySQL
-//TODO titta igenom
+//TODO titta igenom, typ klar
 session_save_path('../session');
 //session_save_path('../../../Documents/session');
 
@@ -69,14 +69,12 @@ function checkbrute($user_id, $mysqli)
     $valid_attempts = $now - (60 * 60); //närmsta timmen som räknas
 
     if ($stmt = $mysqli->prepare("SELECT time FROM test.bruteforce 
-		WHERE mid = ? AND time > '$valid_attempts'")) {
-        $stmt->bind_param('i', $user_id);
+		WHERE mid = ? AND time > ?")) {
+        $stmt->bind_param('ii', $user_id, $valid_attempts);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 5) { //om mer än 5 försök blir funktionen sann
-            echo "Blocked for 1h";
-            //header("Location: ../error.php");
             return true;
         } else {
             return false;

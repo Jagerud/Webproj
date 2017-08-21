@@ -4,3 +4,4 @@
 <script src="js/additional-methods.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/lightbox.min.js"></script>
+<script src="js/forms.js"></script>

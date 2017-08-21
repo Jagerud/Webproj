@@ -18,44 +18,39 @@ include 'includes/navbar.php';
 $userId = $_SESSION['user_id'];        //hämtar id
 $userId = trim($userId);        //tar bort mellanrum
 if (isset($_POST['settingNameSubmit'])) {    //kollar om man tryckt på submit
-    $settingName = $_POST['settingNameInput'];
+    $newMail = $_POST['settingNameInput'];
 
-    $settingName = trim($settingName);
-    if ($settingName == "") {
+    $newMail = trim($newMail);
+    if ($newMail == "") {
         $feedback = "<span style='color:red'>Mail is required</span>";
         echo $feedback;
     } else {
 
         $exist = 0;
         $userId = htmlspecialchars($userId); // Konverterar allt till vanlig text
-        $settingName = htmlspecialchars($settingName);
-        //TODO  fix sql inject, oklart om det nedan är rätt, kanske ska vara som under
-        $databaseNames = "SELECT * FROM test.members WHERE email = (?);"; //hämtar alla mailadresser från databasen
-        //? ska vara $settingName
+        $newMail = htmlspecialchars($newMail);
+        //WHERE id = (?);"; //hämtar användarens mail från databasen
+        $query = "SELECT email FROM test.members;"; //hämtar alla mailaddresser
         if ($stmt = $mysqli->prepare($query)) {
-            $stmt->bind_param("s", $settingName); // Sparar som string och går då inte sql-injecta
+            //$stmt->bind_param("i", $userId); // Sparar som string och går då inte sql-injecta
             $stmt->execute();
+            $result = $stmt->get_result();  //lagrar result
+            while ($row = $result->fetch_array()) { //letar igenom hela databasen
+                $oldMail = $row['email'];
+                if ($oldMail == $newMail) {
+                    $exist = 1;
+                    $feedback = "<span style='color:red'>Email already exists</span>";
+                    echo $feedback;
+                    break;
+                }
+            }
             $stmt->close();
         }
+        if ($exist == 0) {    //lagrar ny mail
 
-        $databaseResult = $mysqli->query($databaseNames);
-        while ($row = $databaseResult->fetch_array()) { //letar igenom hela databasen
-
-            $mid = $row['mid']; //databasnamnen
-            $oldPizza = $row['pizza'];
-            if ($oldPizza == $settingName) {
-                $exist = 1;
-                $feedback = "<span style='color:red'>Pizza already exists</span>";
-                echo $feedback;
-                break;
-            }
-        }
-
-        if ($exist == 0) {    //skickar favoritpizza till databasen, funkar!
-
-            $query = "INSERT INTO `test`.`favorite` (id, pizza, mid) VALUES (NULL, (?),(?));"; //skapar ny rad där id sker automatiskt
+            $query = "UPDATE test.members SET email = (?) WHERE id = (?);"; //uppdaterar mailen
             if ($stmt = $mysqli->prepare($query)) {
-                $stmt->bind_param("ss", $settingName, $userId); // Sparar som string och går då inte sql-injecta
+                $stmt->bind_param("si", $newMail, $userId); // Sparar som int och string svvårare att sql-injecta
                 $stmt->execute();
                 $stmt->close();
 
@@ -76,7 +71,7 @@ if (login_check($mysqli) == true) :
             <!-- Default panel contents -->
             <div class="panel-heading">Change mail</div>
             <div class="panel-body">
-                <form id="settingName" method="post" action="#" >
+                <form id="settingName" method="post" action="#" name="settingNameForm" >
                     <div class="row">
                         <div class="col-sm-3 col-sm-offset-5">
                             <div class="input-group">
@@ -92,18 +87,26 @@ if (login_check($mysqli) == true) :
                 <!-- Table -->
                 <table class="table">
                     <div class="btn-group-vertical" role="group">
-                        <button type="button" id="pizza1" class="list-group-item btn-lg btn-block" onclick="changeColor();" > first pizza</button>
-
                         <?php
-                        //TODO  fix sql inject
-                        //$query = "SELECT * FROM test.favorite WHERE mid = ($userId) ORDER BY id DESC"; //hÃ¤mtar frÃ¥n databasen i fallande ordning utefter Id
+                        $query = "SELECT email FROM test.members WHERE id = (?);"; //hÃ¤mtar användarens mail
+                        if ($stmt = $mysqli->prepare($query)) {
+                            $stmt->bind_param("i", $userId); // Sparar som int och string svårare att sql-injecta
+                            $stmt->execute();
+                            $result = $stmt->get_result();  //lagrar result
+                            if($row = $result->fetch_array()){  //om det finns results hämta array
+                                $mail = $row['email'];  //hämta från email kolumnen, finns bara en så behöver inte loopa
+                                echo "<button type=\"button\" class=\"list-group-item btn-lg btn-block\">$mail</button>";
+                            }
+                            $stmt->close();
+                        }
+
                         //$result = $mysqli->query($query);
-                        /*while ($row = $result->fetch_array()){ //letar igenom hela databasen
-                            $id = $row['id']; //databasnamnen
-                            $pizza = $row['pizza'];
-                            echo
-                            "<button type=\"button\" id=\"$id\" class=\"list-group-item btn-lg btn-block\" onclick=\"deletePizza();\">$pizza</button>";
-                        } */
+                        //while ($row = $stmt->fetch_array()){ //letar igenom hela databasen
+
+                        //    $mail = $row['email'];
+                           // echo
+                           // "<button type=\"button\" class=\"list-group-item btn-lg btn-block\" onclick=\"deletePizza();\">$row</button>";
+                        //}
                         ?>
 
 

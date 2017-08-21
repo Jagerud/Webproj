@@ -94,7 +94,7 @@ if (login_check($mysqli) == true) :
 
                         <?php
                         //TODO  fix sql inject och deletePizza
-                        $query = "SELECT * FROM test.favorite WHERE mid = ($userId) ORDER BY id DESC"; //hÃ¤mtar frÃ¥n databasen i fallande ordning utefter Id
+                        $query = "SELECT * FROM test.favorite WHERE mid = ($userId) ORDER BY id DESC;"; //hÃ¤mtar frÃ¥n databasen i fallande ordning utefter Id
                         $result = $mysqli->query($query);
                         while ($row = $result->fetch_array()){ //letar igenom hela databasen
                             $id = $row['id']; //databasnamnen
