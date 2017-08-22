@@ -3,6 +3,11 @@
 // då jag förstod hur det fungerade direkt och detta fungerade även på min hemsida.
 
 //TODO eventuellt ändra till jquery
+$(document).ready(function(){
+
+    $("div").css("border", "3px solid red");
+
+});
 function formhash(form, password) {
     var p = document.createElement("input");
 
@@ -15,7 +20,8 @@ function formhash(form, password) {
     password.value = "";
     form.submit();
 }
-$(document).ready(function () {
+
+$().ready(function () {
     $('#settingName').validate({
         rules: {
             settingNameInput: {

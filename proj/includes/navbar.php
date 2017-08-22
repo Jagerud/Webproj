@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="css/lightbox.css">
     <link rel="stylesheet" href="css/stylesheet.css">
     <link rel="shortcut icon" href="img/pizza.png">
-    <script type="text/JavaScript" src="js/extra.js"></script>
-    <script type="text/JavaScript" src="js/forms.js"></script>
+
+
+    <!--script type="text/JavaScript" src="js/extra.js"></script>
+    <script type="text/JavaScript" src="js/forms.js"></script-->
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">

@@ -11,6 +11,22 @@ include 'includes/navbar.php';
 
 $userId = $_SESSION['user_id'];        //hämtar id
 $userId = trim($userId);        //tar bort mellanrum
+
+if (isset($_POST['deletePizza'])) {    //kollar om man tryckt på deletepizzaknappen
+    $pizzaId = $_POST['pizzaId'];
+    $pizzaName = $_POST['pizzaName'];   //Skrivs bara ut
+    $pizzaId = trim($pizzaId);
+    $pizzaId = htmlspecialchars($pizzaId);
+    $query = "DELETE FROM test.favorite WHERE id = (?)"; //tar bort specifikt id från databasen, lånat från lab4 delvis
+    if ($stmt = $mysqli->prepare($query)){
+        $stmt->bind_param("i", $pizzaId); //gÃ¶r till int
+        $stmt->execute();
+        $stmt->close();
+        $feedback = "<h2><span style='color:green'>$pizzaName has been removed!</span></h2>";
+        echo $feedback;
+    }
+}
+
 // Databashantering ifrån lab 5
 if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
     $pizza = $_POST['pizza'];
@@ -72,7 +88,7 @@ if (login_check($mysqli) == true) :
             <!-- Default panel contents -->
             <div class="panel-heading">Add Favourite Pizza!</div>
             <div class="panel-body">
-                <form id="form2" method="post" action="#" >
+                <form id="form2" method="post" action="#" name="form2Name">
                     <div class="row">
 
                         <div class="col-lg-12">
@@ -90,7 +106,6 @@ if (login_check($mysqli) == true) :
                 <!-- Table -->
                 <table class="table">
                     <div class="btn-group-vertical" role="group">
-                        <button type="button" id="pizza1" class="list-group-item btn-lg btn-block" onclick="changeColor();" > first pizza</button>
 
                         <?php
                         //TODO  fix sql inject och deletePizza
@@ -100,7 +115,15 @@ if (login_check($mysqli) == true) :
                             $id = $row['id']; //databasnamnen
                             $pizza = $row['pizza'];
                             echo
-                            "<button type=\"button\" id=\"$id\" class=\"list-group-item btn-lg btn-block\" onclick=\"deletePizza();\">$pizza</button>";
+                                "
+                                <form action='#' method='post'>
+                                <input type='hidden' name='pizzaId' value='$id'>
+                                <input type='hidden' name='pizzaName' value='$pizza'> 
+                                <button type=\"submit\" name='deletePizza' id=\"$id\" class=\"list-group-item btn-lg btn-block\" >$pizza</button>
+                                
+                                </form>
+                                ";
+
                         }
                         ?>
 

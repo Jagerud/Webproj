@@ -125,5 +125,7 @@ if (login_check($mysqli) == true) :
     </p>
 <?php endif; ?>
 <?php include("includes/scripts.php"); ?>
+
+
 </body>
 </html>
