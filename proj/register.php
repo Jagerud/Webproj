@@ -6,7 +6,6 @@ if(!isset($_SESSION))
 {
     session_start();
 }
-
 include_once 'includes/register.inc.php';
 include_once 'includes/functions.php';
 include 'includes/navbar.php';

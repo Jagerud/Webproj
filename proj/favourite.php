@@ -1,15 +1,14 @@
 <?php
-//TODO sql inject och struktur
 session_save_path('session');
 //session_save_path("../../Documents/session");
-if(!isset($_SESSION))
+if(!isset($_SESSION))   //kollar att den inte redan är startad
 {
     session_start();
 }
 include_once 'includes/functions.php';
 include 'includes/navbar.php';
 
-$userId = $_SESSION['user_id'];        //hämtar id
+$userId = $_SESSION['user_id'];        //hämtar id från session
 $userId = trim($userId);        //tar bort mellanrum
 
 if (isset($_POST['deletePizza'])) {    //kollar om man tryckt på deletepizzaknappen
@@ -40,23 +39,21 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
         $exist = 0;
         $userId = htmlspecialchars($userId); // Konverterar allt till vanlig text
         $pizza = htmlspecialchars($pizza);
-        //någonting har blivit fel med sql inject skyddet på denna select, (tror det behövs?)
-        //Hinner inte fixa detta nu men är en enkel fix om man har lite mer tid. Skulle vara en where med "mid".
-        //TODO  fix sql inject
-        $databaseNames = "SELECT * FROM test.favorite WHERE mid = ($userId);"; //hämtar från databasen med rätt id
+        $query = "SELECT * FROM test.favorite WHERE mid = (?);"; //hämtar från databasen med rätt id
+        if ($stmt = $mysqli->prepare($query)) {
+            $stmt->bind_param("i", $userId); // Sparar som int och string svårare att sql-injecta
+            $stmt->execute();
+            $result = $stmt->get_result();  //lagrar result
 
-
-
-        $databaseResult = $mysqli->query($databaseNames);
-        while ($row = $databaseResult->fetch_array()) { //letar igenom hela databasen
-
-            $mid = $row['mid']; //databasnamnen
-            $oldPizza = $row['pizza'];
-            if ($oldPizza == $pizza) {
-                $exist = 1;
-                $feedback = "<span style='color:red'>Pizza already exists</span>";
-                echo $feedback;
-                break;
+            while ($row = $result->fetch_array()) { //letar igenom hela databasen
+                $mid = $row['mid']; //databasnamnen
+                $oldPizza = $row['pizza'];
+                if ($oldPizza == $pizza) {
+                    $exist = 1;
+                    $feedback = "<span style='color:red'>Pizza already exists</span>";
+                    echo $feedback;
+                    break;
+                }
             }
         }
 
@@ -86,49 +83,45 @@ if (login_check($mysqli) == true) :
     <div class="well">
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Add Favourite Pizza!</div>
+            <div class="panel-heading"><h2>Add Favourite Pizza!</h2></div>
             <div class="panel-body">
                 <form id="form2" method="post" action="#" name="form2Name">
                     <div class="row">
-
                         <div class="col-lg-12">
                             <div class="input-group">
-
                                 <input type="text" class="form-control" name="pizza" placeholder="Enter Favorite Pizza...">
                                 <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit" name="favoriteAdd">Submit!</button>
-                      </span>
+                                    <button class="btn btn-default" type="submit" name="favoriteAdd">Submit!</button>
+                                </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
                     </div><!-- /.row -->
                 </form>
-
+                <h3>Click on a pizza to delete it!</h3>
                 <!-- Table -->
                 <table class="table">
                     <div class="btn-group-vertical" role="group">
 
                         <?php
-                        //TODO  fix sql inject och deletePizza
-                        $query = "SELECT * FROM test.favorite WHERE mid = ($userId) ORDER BY id DESC;"; //hÃ¤mtar frÃ¥n databasen i fallande ordning utefter Id
-                        $result = $mysqli->query($query);
-                        while ($row = $result->fetch_array()){ //letar igenom hela databasen
-                            $id = $row['id']; //databasnamnen
-                            $pizza = $row['pizza'];
-                            echo
-                                "
-                                <form action='#' method='post'>
-                                <input type='hidden' name='pizzaId' value='$id'>
-                                <input type='hidden' name='pizzaName' value='$pizza'> 
-                                <button type=\"submit\" name='deletePizza' id=\"$id\" class=\"list-group-item btn-lg btn-block\" >$pizza</button>
-                                
-                                </form>
-                                ";
-
+                        $query = "SELECT * FROM test.favorite WHERE mid = (?) ORDER BY id DESC;"; //hÃ¤mtar frÃ¥n databasen i fallande ordning utefter id
+                        if ($stmt = $mysqli->prepare($query)) {
+                            $stmt->bind_param("i", $userId); // Sparar som int och string svårare att sql-injecta
+                            $stmt->execute();
+                            $result = $stmt->get_result();  //lagrar result
+                            while ($row = $result->fetch_array()) { //letar igenom hela databasen
+                                $id = $row['id']; //databasnamnen
+                                $pizza = $row['pizza'];
+                                echo
+                                    "
+                                    <form action='#' method='post'>
+                                        <input type='hidden' name='pizzaId' value='$id'>
+                                        <input type='hidden' name='pizzaName' value='$pizza'> 
+                                        <button type=\"submit\" name='deletePizza' id=\"$id\" class=\"list-group-item btn-lg btn-block\" >$pizza</button>
+                                    </form>
+                                    ";
+                            }
                         }
                         ?>
-
-
-
                     </div>
 
                 </table>
@@ -139,8 +132,6 @@ if (login_check($mysqli) == true) :
 <?php else : ?>
     <p>
         <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
-
-
     </p>
 <?php endif; ?>
 <?php include("includes/scripts.php"); ?>
