@@ -1,13 +1,7 @@
 //Det mesta i detta dokument är hämtat ifrån http://www.wikihow.com/Create-a-Secure-Login-Script-in-PHP-and-MySQL då jag inte lärt
 //mig något om kryptering i skolan och simpel kontroll av inmatning kändes onödigt att ändra
-// då jag förstod hur det fungerade direkt och detta fungerade även på min hemsida.
+// då jag förstod hur det fungerade direkt och detta fungerade även på min hemsida. Har egen i extra.js
 
-//TODO eventuellt ändra till jquery
-$(document).ready(function(){
-
-    $("div").css("border", "3px solid red");
-
-});
 function formhash(form, password) {
     var p = document.createElement("input");
 
@@ -20,7 +14,8 @@ function formhash(form, password) {
     password.value = "";
     form.submit();
 }
-
+/*
+//får den inte att fungera här, något som är konstigt, ligger i extra.js istället
 $().ready(function () {
     $('#settingName').validate({
         rules: {
@@ -41,6 +36,8 @@ $().ready(function () {
     });
 
 });
+*/
+//js kontroll av inmatning till registrering, hämtat från källan ovan, gjort nån ändring
 function regformhash(form, uid, email, password, conf) {
     // Kontroll så att inget fält var tomt
     if (uid.value === '' ||

@@ -1,6 +1,6 @@
 <?php
 //Tagit från http://www.wikihow.com/Create-a-Secure-Login-Script-in-PHP-and-MySQL
-//ändrat så det fungerar och lite för att
+//ändrat så det fungerar och ändrat smådetaljer, har jquery validation på annan inmatning
 session_save_path('../session');
 //session_save_path("../../../Documents/session");
 if(!isset($_SESSION))
@@ -63,8 +63,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
     }
 
     if (empty($error_msg)) {
-        // Tror inte jag använder detta men tar inte bort nu precis innan
-        //TODO kolla kommentaren ovan, används detta?
         $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
 
         // lägger in användaren

@@ -16,12 +16,12 @@ if (isset($_POST['deletePizza'])) {    //kollar om man tryckt på deletepizzakna
     $pizzaName = $_POST['pizzaName'];   //Skrivs bara ut
     $pizzaId = trim($pizzaId);
     $pizzaId = htmlspecialchars($pizzaId);
-    $query = "DELETE FROM test.favorite WHERE id = (?)"; //tar bort specifikt id från databasen, lånat från lab4 delvis
+    $query = "DELETE FROM test.favorite WHERE id = (?);"; //tar bort specifikt id från databasen, lånat från lab4 delvis
     if ($stmt = $mysqli->prepare($query)){
         $stmt->bind_param("i", $pizzaId); //gÃ¶r till int
         $stmt->execute();
         $stmt->close();
-        $feedback = "<h2><span style='color:green'>$pizzaName has been removed!</span></h2>";
+        $feedback = "<span style='color:green;'>$pizzaName has been removed!</span>";
         echo $feedback;
     }
 }
@@ -32,7 +32,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
     $pizza = trim($pizza);
 
     if ($pizza == "") {
-        $feedback = "<span style='color:red'>Pizza is required</span>";
+        $feedback = "<span style='color:red;'>Pizza is required</span>";
         echo $feedback;
     } else {
 
@@ -50,7 +50,7 @@ if (isset($_POST['favoriteAdd'])) {    //kollar om man tryckt på submit
                 $oldPizza = $row['pizza'];
                 if ($oldPizza == $pizza) {
                     $exist = 1;
-                    $feedback = "<span style='color:red'>Pizza already exists</span>";
+                    $feedback = "<span style='color:red;'>Pizza already exists</span>";
                     echo $feedback;
                     break;
                 }

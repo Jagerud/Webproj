@@ -1,5 +1,5 @@
 <?php
-//klar
+
 	//http://www.ida.liu.se/~725G54/material/kod/mysql/includes/db.inc.phps
 	/*$host = "db-und.ida.liu.se";
 	$user = "filni797";

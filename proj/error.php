@@ -8,9 +8,7 @@ if(!isset($_SESSION))
 include_once 'includes/functions.php';
 include 'includes/navbar.php';
 
-
 $error = filter_input(INPUT_GET, 'err', $filter = FILTER_SANITIZE_STRING);
-
 if (! $error) {
     $error = 'Unknown error.';
 }

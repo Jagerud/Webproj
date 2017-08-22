@@ -19,6 +19,7 @@ function changeColor() {
 }
 //Jquery inmatningskontroll
 $(document).ready(function () {
+    //Favourite pizza
     $("#form2").validate({
         rules: {
             pizza: {
@@ -35,6 +36,7 @@ $(document).ready(function () {
             }
         }
     });
+    //Byta Email
     $("#settingName").validate({
         rules: {
             settingNameInput: {
