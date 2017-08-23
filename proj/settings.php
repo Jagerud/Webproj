@@ -86,6 +86,8 @@ if (login_check($mysqli) == true) :
 
                 <!-- Table -->
                 <table class="table">
+                    <tr>
+                        <td>
                     <div class="btn-group-vertical" role="group">
                         <?php
                         $query = "SELECT email FROM test.members WHERE id = (?);"; //hÃ¤mtar användarens mail
@@ -108,11 +110,9 @@ if (login_check($mysqli) == true) :
                            // "<button type=\"button\" class=\"list-group-item btn-lg btn-block\" onclick=\"deletePizza();\">$row</button>";
                         //}
                         ?>
-
-
-
                     </div>
-
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

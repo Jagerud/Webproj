@@ -8,16 +8,12 @@
     <meta name="keywords" content="Pizza, smart, , Filip Jägerud, jaegerud, jagerud, jaeger">
     <meta name="author" content="Filip Jägerud">
     <title>Sann Pizza</title>
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
     <link rel="stylesheet" href="css/lightbox.css">
     <link rel="stylesheet" href="css/stylesheet.css">
     <link rel="shortcut icon" href="img/pizza.png">
-
-
-    <!--script type="text/JavaScript" src="js/extra.js"></script>
-    <script type="text/JavaScript" src="js/forms.js"></script-->
+    <script type="text/JavaScript" src="js/sha512.js"></script>
+    <script type="text/JavaScript" src="js/forms.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -70,11 +66,11 @@
 
                                                 <input type="text" class="form-control" name="email"
                                                        placeholder="Email...">
-                                                <input type="password" class="form-control" name="password"
+                                                <input type="password" class="form-control" name="passwordLogin"
                                                        id="password"
                                                        placeholder="Password...">
                                                 <span class="input-group-btn">
-				                                <button class="btn btn-default" type="SUBMIT" value="Login" onclick="formhash(this.form, this.form.password);" name="submit">-></button>
+				                                <button class="btn btn-default" type="SUBMIT" value="Login" onclick="formhash(this.form, this.form.passwordLogin);" name="submit">-></button>
                                             </span>
                                             </div><!-- /input-group -->
                                         </div><!-- /.col-lg-6 -->

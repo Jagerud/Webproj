@@ -100,6 +100,8 @@ if (login_check($mysqli) == true) :
                 <h3>Click on a pizza to delete it!</h3>
                 <!-- Table -->
                 <table class="table">
+                    <tr>
+                        <td>
                     <div class="btn-group-vertical" role="group">
 
                         <?php
@@ -123,6 +125,8 @@ if (login_check($mysqli) == true) :
                         }
                         ?>
                     </div>
+                    </td>
+                    </tr>
 
                 </table>
             </div>

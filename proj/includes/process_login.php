@@ -46,7 +46,7 @@ if (isset($_POST['email'], $_POST['p'])) {
     <?php
 } else {
 
-    echo 'Invalid Request, you must be logged in to see this page!.</span> Please <a href="../index.php">login</a>.'; //POST skickade fel
+    echo 'Invalid Request, you must be logged in to see this page!. Please <a href="../index.php">login</a>.'; //POST skickade fel
 }
 include 'scripts.php';
 ?>

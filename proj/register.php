@@ -10,16 +10,6 @@ include_once 'includes/register.inc.php';
 include_once 'includes/functions.php';
 include 'includes/navbar.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Secure Login: Registration Form</title>
-    <script type="text/JavaScript" src="js/sha512.js"></script>
-    <script type="text/JavaScript" src="js/forms.js"></script>
-    <link rel="stylesheet" href="css/stylesheet.css"/>
-</head>
-<body>
 <h1>Register with us!</h1>
 <?php
 if (!empty($error_msg)) {
@@ -48,7 +38,7 @@ if (!empty($error_msg)) {
                     <li>Your password and confirmation must match exactly</li>
                 </ul>
 
-                <form class="formClass col-sm-3 col-md-offset-5" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>"method="post" name="registration_form">
+                <form class="formClass col-sm-3 col-md-offset-5" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" name="registration_form">
                     <ul class="list-group">
                         <li class="list-group-item"><label for="username">Username: </label><input type='text' name='username' id='username' /></li>
                         <li class="list-group-item"><label for="email">Email: </label><input type="text" name="email" id="email"/></li>
@@ -61,7 +51,7 @@ if (!empty($error_msg)) {
             </div>
         </div>
     </div>
-
+</div>
 
     <?php include("includes/scripts.php"); ?>
 </body>

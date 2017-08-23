@@ -17,15 +17,6 @@ if (login_check($mysqli) == true) { //kollar om inloggad
     $loggedIn = false;
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Secure Login: Log In</title>
-    <link rel="stylesheet" href="css/stylesheet.css"/>
-    <script type="text/JavaScript" src="js/sha512.js"></script>
-    <script type="text/JavaScript" src="js/forms.js"></script>
-</head>
-<body>
 <div class="container">
     <div class="myheader"><h1>Sann Pizza</h1></div>
     <!-- Inspiration ifrån tidigare arbete på lab 3 -->
