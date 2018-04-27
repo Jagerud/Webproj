@@ -1,7 +1,6 @@
 //Det mesta i detta dokument är hämtat ifrån http://www.wikihow.com/Create-a-Secure-Login-Script-in-PHP-and-MySQL då jag inte lärt
 //mig något om kryptering i skolan och simpel kontroll av inmatning kändes onödigt att ändra
-// då jag förstod hur det fungerade direkt och detta fungerade även på min hemsida.
-
+// då jag förstod hur det fungerade direkt och detta fungerade även på min hemsida. Har egen i extra.js
 
 function formhash(form, password) {
     var p = document.createElement("input");
@@ -13,10 +12,32 @@ function formhash(form, password) {
 
     //Tar bort gamla okrypterade lösenordet
     password.value = "";
-
     form.submit();
 }
+/*
+//får den inte att fungera här, något som är konstigt, ligger i extra.js istället
+$().ready(function () {
+    $('#settingName').validate({
+        rules: {
+            settingNameInput: {
+                    minlength: 3,
+                    required: true,
+                    email: true
+                }
+        },
+        //wrapper:'li',   // lägger felet under rutan istället för jämte http://jsfiddle.net/ryleyb/aaEFQ/
+        messages: {
+            settingNameInput: {
+                email: "Email is required",
+                required: "Required",
+                minlength: "Atleast 3 chars"
+            }
+        }
+    });
 
+});
+*/
+//js kontroll av inmatning till registrering, hämtat från källan ovan, gjort nån ändring
 function regformhash(form, uid, email, password, conf) {
     // Kontroll så att inget fält var tomt
     if (uid.value === '' ||

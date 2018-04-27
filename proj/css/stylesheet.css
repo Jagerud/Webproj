@@ -8,7 +8,6 @@ body {
     background-color: #EEF4F4;
     padding-top: 70px;
     text-align: center;
-
 }
 
 h1 {
@@ -68,7 +67,6 @@ p {
 
 }
 .hej {
-    font-family: "Arial Black";
     font-size: 50px;
     color: slateblue;
 }
@@ -79,4 +77,17 @@ ul
 li
 {
     list-style-type: none;
+}
+.settingBars {
+    text-align: center;
+}
+.formClass {
+    display: table;
+}/*
+.inputClass {
+    display: table-cell;
+    text-align: center;
+}*/
+label {
+    display: table-cell;
 }

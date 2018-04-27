@@ -1,58 +1,25 @@
 <?php
+//klar
 session_save_path('session');
 //session_save_path("../../Documents/session");
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 include("includes/functions.php");
 include 'includes/navbar.php';
-if (login_check($mysqli) == true) {
+
+if (login_check($mysqli) == true) { //kollar om inloggad
     $logged = 'in';
+    $loggedIn = true;
 } else {
     $logged = 'out';
+    $loggedIn = false;
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Secure Login: Log In</title>
-    <link rel="stylesheet" href="css/stylesheet.css"/>
-    <script type="text/JavaScript" src="js/sha512.js"></script>
-    <script type="text/JavaScript" src="js/forms.js"></script>
-</head>
-<body>
 <div class="container">
     <div class="myheader"><h1>Sann Pizza</h1></div>
     <!-- Inspiration ifrån tidigare arbete på lab 3 -->
-<!--
-    <form action="includes/process_login.php" method="POST">
-        <input type="text" name="texten">
-        <input type="submit" name="submiten">
-    </form>
-
-
-    <form class="navbar-form" action="includes/process_login.php" method="post"
-          name="testForm">
-        <!-- Kunna söka efter pizzor på sidan// INTE IMPLEMENTERAD -->
-
-
-<!--
-
-        <div class="row">
-
-            <div class="col-lg-12">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="testEmail"
-                           placeholder="testEmail...">
-                    <input type="password" class="form-control" name="testPassword"
-                           id="testPassword"
-                           placeholder="testPassword...">
-                                            <span class="input-group-btn">
-				                                <button class="btn btn-default" type="submit" value="submit"  name="submit">-></button>
-                                            </span>
-                </div><!-- /input-group ->
-            </div><!-- /.col-lg-6 ->
-        </div><!-- /.row ->
-    </form>
--->
     <div class="row">
 
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -87,9 +54,16 @@ if (login_check($mysqli) == true) {
     ?>
 
     <?php
-    echo "<p>If you don't have a login, please <a href='register.php'>register</a></p>";
+
+    if($loggedIn){
+        echo "<p>You are our most well liked user!</p>";
+    }
+    else {
+        echo "<p>If you don't have a login, please <a href='register.php'>register</a></p>";
+    }
+
     ?>
-    </div>
-    <?php include("includes/scripts.php"); ?>
+</div>
+<?php include("includes/scripts.php"); ?>
 </body>
 </html>

@@ -1,20 +1,16 @@
 <?php
 session_save_path('session');
 //session_save_path("../../Documents/session");
-session_start();
-
+if(!isset($_SESSION))
+{
+    session_start();
+}
+include_once 'includes/functions.php';
+include 'includes/navbar.php';
 ?>
 
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Secure Login: Registration Success</title>
-        <link rel="stylesheet" href="styles/main.css" />
-    </head>
-    <body>
-        <h1>Registration successful!</h1>
-        <p>You can now go back to the <a href="index.php">login page</a> and log in</p>
-    </body>
+<h1>Success!</h1>
+<p>Go to the  <a href="index.php">login page</a> and log in</p>
+<?php include("includes/scripts.php"); ?>
+</body>
 </html>
